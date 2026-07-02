@@ -49,6 +49,13 @@ cd jigeumlab-skills && ./install.sh          # 기본: Codex(~/.agents/skills)
 
 각 스킬은 `SKILL.md`(진입점) + `references/`(상세) + `evals.json`(테스트) 구조다. 스킬은 작업 내용이 `SKILL.md`의 description과 맞을 때 자동으로 선택된다. Codex가 요구하는 frontmatter는 `name`·`description` 두 필드이며, 전 스킬이 이를 충족한다.
 
+### 작업 규칙 (AGENTS.md)
+
+[`AGENTS.md`](AGENTS.md)는 Codex가 세션마다 읽는 상시 지침(행동 원칙·한국어 문체·포맷 규칙)이다. 전역 적용하려면 `~/.codex/AGENTS.md`로, 특정 작업 폴더에만 적용하려면 그 폴더 루트에 복사한다. 상단 "회사 정보"만 채우면 된다.
+```
+cp jigeumlab-skills/AGENTS.md ~/.codex/AGENTS.md
+```
+
 ## 라이선스
 
 MIT
