@@ -1,0 +1,33 @@
+{
+  "skill_name": "youtube-summary",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "https://www.youtube.com/watch?v=dQw4w9WgXcQ 이 영상 요약해줘",
+      "expected_output": "yt-dlp로 자막 추출 후 타임스탬프 포함 마크다운 요약 출력",
+      "expectations": [
+        "yt-dlp로 .srt 자막 파일 추출",
+        "[HH:MM:SS] 형식 타임스탬프가 포함된 마크다운 요약 출력",
+        "섹션 헤딩과 결론 포함"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "transcript 직접 줄게. [00:00:01] 안녕하세요, 오늘은...",
+      "expected_output": "yt-dlp 추출 생략, 직접 제공된 transcript로 요약 처리",
+      "expectations": [
+        "yt-dlp 추출 단계를 건너뜀",
+        "제공된 transcript를 직접 파싱해 요약 출력"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "이 웹페이지 요약해줘",
+      "expected_output": "youtube-summary 스킬을 실행하지 않고 일반 웹 요약 제공",
+      "expectations": [
+        "YouTube URL이나 transcript가 없으므로 스킬 절차를 실행하지 않음",
+        "일반 웹 콘텐츠 요약 방법으로 안내"
+      ]
+    }
+  ]
+}

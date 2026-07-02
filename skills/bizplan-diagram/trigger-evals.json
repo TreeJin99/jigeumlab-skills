@@ -1,0 +1,12 @@
+[
+  {"query": "제안배경 도식화해줘", "should_trigger": true},
+  {"query": "AS-IS/TO-BE 나노바나나로 그려줘", "should_trigger": true},
+  {"query": "TAM/SAM/SOM 그려줘", "should_trigger": true},
+  {"query": "포지셔닝맵 그려줘", "should_trigger": true},
+  {"query": "이 섹션 도식화해줘", "should_trigger": true},
+  {"query": "선순환 플로우 도식 만들어줘", "should_trigger": true},
+  {"query": "실제 이미지 생성해줘", "should_trigger": false},
+  {"query": "사업계획서 본문 작성해줘", "should_trigger": false},
+  {"query": "코드 클래스 다이어그램 그려줘", "should_trigger": false},
+  {"query": "HWP 파일 편집해줘", "should_trigger": false}
+]

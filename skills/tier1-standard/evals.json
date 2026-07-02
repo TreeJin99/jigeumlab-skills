@@ -1,0 +1,54 @@
+{
+  "skill_name": "tier1-standard",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "새 스킬 SKILL.md 작성해줘",
+      "expected_output": "8요소 합격 기준(frontmatter/description/workflow/constraints/anti-triggers/output-schema/evals/progressive-disclosure)을 충족하는 SKILL.md가 생성됨",
+      "expectations": [
+        "YAML frontmatter(name·description·type·version)가 포함됨",
+        "Workflow 섹션이 포함됨",
+        "Constraints 섹션이 포함됨",
+        "Anti-Triggers 섹션이 포함됨",
+        "Output Schema 또는 출력 형식이 포함됨",
+        "200줄 이하로 작성됨"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "evals.json 어떻게 써야 해?",
+      "expected_output": "evals.json 규격(skill_name, evals 배열, id/prompt/expectations 구조)이 설명됨",
+      "expectations": [
+        "skill-creator 포맷(skill_name, evals, id, prompt, expected_output, expectations) 또는 tier1-standard 규격을 안내함",
+        "positive·negative·edge 3종 케이스 구조를 설명함"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "사업계획서 초안 작성해줘",
+      "expected_output": "스킬 표준 검토 없이 사업계획서 내용 작성을 수행하지 않고 biz-plan 스킬로 위임함",
+      "expectations": [
+        "tier1-standard 스킬의 표준 검토 프로세스를 실행하지 않음",
+        "사업계획서 작성을 biz-plan 스킬로 위임하거나 tier1-standard 범위 밖임을 안내함"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "이 코드 디버깅해줘",
+      "expected_output": "스킬 표준 관련 내용 없이 일반 코드 디버깅을 수행하거나 tier1-standard 범위 밖임을 안내함",
+      "expectations": [
+        "tier1-standard 스킬 표준 검토 프로세스를 시작하지 않음",
+        "일반 코드 디버깅을 수행하거나 범위 밖임을 안내함"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "이 스킬 description 좀 봐줘",
+      "expected_output": "description 라우팅 정밀도 기준(100~300자/긍정≥5/부정≥2/pushiness)을 적용해 평가하거나 skill-optimizer로 위임함",
+      "expectations": [
+        "description 라우팅 정밀도 기준(100~300자·긍정 트리거 수·부정 트리거 수·pushiness)을 적용해 평가함",
+        "skill-optimizer로 위임하거나 tier1-standard 기준으로 직접 진단함"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[
+  {"query": "문체 교정해줘", "should_trigger": true},
+  {"query": "개조식으로 변환해줘", "should_trigger": true},
+  {"query": "금지어 제거해줘", "should_trigger": true},
+  {"query": "수치 표기 통일해줘", "should_trigger": true},
+  {"query": "사업계획서 섹션 집필해줘", "should_trigger": true},
+  {"query": "합니다체 고쳐줘", "should_trigger": true},
+  {"query": "추상 표현 수치로 바꿔줘", "should_trigger": true},
+  {"query": "영어 이메일 교정해줘", "should_trigger": false},
+  {"query": "SNS 게시글 써줘", "should_trigger": false},
+  {"query": "코드 주석 달아줘", "should_trigger": false},
+  {"query": "일반 보고서 써줘", "should_trigger": false}
+]

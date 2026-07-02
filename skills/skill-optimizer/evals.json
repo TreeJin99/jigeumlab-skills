@@ -1,0 +1,53 @@
+{
+  "skill_name": "skill-optimizer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "이 SKILL.md 7축 진단해줘",
+      "expected_output": "Phase 1 진단표(7축 판정)가 표 형식으로 출력됨",
+      "expectations": [
+        "Phase 1 진단표가 출력됨",
+        "7개 진단 축(라우팅·Workflow/Constraints·Anti-trigger·평가가능성·Anatomy·Progressive Disclosure·Pushiness)이 모두 포함됨",
+        "각 축에 통과/경고/결함 판정과 근거가 제시됨"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "biz-plan 스킬 리팩토링해줘",
+      "expected_output": "진단→재설계→평가셋→리팩토링 4단계가 순서대로 수행됨",
+      "expectations": [
+        "Phase 1 진단이 먼저 수행됨",
+        "Phase 2 구조 재설계가 수행됨",
+        "Phase 3 평가셋 evals.json 초안이 제시됨",
+        "Phase 4 리팩토링된 SKILL.md가 출력됨"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "이 파이썬 코드 리뷰해줘",
+      "expected_output": "7축 진단 프로세스를 실행하지 않고 일반 코드 리뷰를 수행하거나 skill-optimizer 범위가 아님을 안내함",
+      "expectations": [
+        "7축 진단 프로세스를 시작하지 않음",
+        "일반 Python 코드 리뷰를 직접 수행하거나 skill-optimizer 범위 밖임을 안내함"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "새 스킬 만들어줘",
+      "expected_output": "기존 스킬 리팩토링이 아닌 새 스킬 생성 요청을 인식하고 skill-creator 또는 tier1-standard로 안내함",
+      "expectations": [
+        "리팩토링이 아닌 새 스킬 생성 요청임을 인식함",
+        "skill-creator 또는 tier1-standard로 위임하거나 새 스킬 생성 절차를 안내함"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "description이 너무 긴데",
+      "expected_output": "단순 축약이 아닌 7축 진단의 라우팅 정밀도 축 관점에서 description을 평가함",
+      "expectations": [
+        "7축 진단 중 라우팅 정밀도 축 관점에서 description을 평가함",
+        "단순 축약이 아닌 구조적 진단을 수행함"
+      ]
+    }
+  ]
+}

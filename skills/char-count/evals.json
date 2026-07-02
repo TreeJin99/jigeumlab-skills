@@ -1,0 +1,126 @@
+{
+  "skill_name": "char-count",
+  "version": "0.1.0",
+  "changelog": [
+    "0.1.0: 초기 evals.json — Tier-1 표준 (positive/negative/edge 3-case + contains/regex/llm-rubric 다층 assertion). 시각 추정 발생 = critical_violation"
+  ],
+  "test_cases": [
+    {
+      "id": "positive_business_plan_char_limit_check",
+      "category": "positive",
+      "query": "초기창업패키지 사업계획서 본문이 1,000자 제한인데 카운트 좀 해줘. 본문 5개 일괄 체크.",
+      "should_trigger": true,
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "글자수 체크",
+          "rationale": "Output Schema 헤더 — '[글자수 체크]' 마커가 응답에 등장해야 함"
+        },
+        {
+          "type": "regex",
+          "value": "(✅ OK|❌ OVER)",
+          "rationale": "OK/OVER 판정 라벨 포함 — Output Schema 정확성"
+        },
+        {
+          "type": "regex",
+          "value": "(PowerShell|Python|wc -m|\\.Length|len\\()",
+          "rationale": "카운트 도구 사용 증거 — 시각 추정이 아닌 도구 호출. tool_use 로그에 PowerShell/Python 호출 1회 이상"
+        },
+        {
+          "type": "regex",
+          "value": "\\d+\\s*(chars|자)",
+          "rationale": "정수 카운트 결과 출력 — 숫자 표시 누락 시 측정 미실행 의심"
+        },
+        {
+          "type": "llm-rubric",
+          "value": "트랜스크립트와 응답을 1~5점으로 평가한다.\n(a) 정확한 카운트 도구(PowerShell/Python)를 호출했는가? '약 N자 정도일 듯' 같은 시각 추정이 응답에 1회라도 등장하면 즉시 1점(critical_violation)\n(b) 본문 5개 모두 측정 + OK/OVER 판정 + 마진(±N자) 표시 완료했는가? 일부 본문 누락 시 감점\n(c) 양식 텍스트(헤딩·안내문·'글자수 제한: 1,000자' 표기)는 카운트 제외하고 사용자 본문만 카운트했는가?\n(d) Output Schema 형식(표 형태 + 요약)을 준수했는가? 자유 문장 나열 시 감점\n(e) OVER 발생 시 자동 압축이 아닌 사용자 안내(압축 옵션 제시)로 마무리했는가? 무단 압축 시 즉시 1점\n4점 이상에서만 합격. 시각 추정·무단 압축 = critical_violation.",
+          "passing_score": 4,
+          "rationale": "Capability Uplift 정확도 검증 — 카운트 도구 호출·표준 형식·정확한 결과·자동 압축 금지"
+        }
+      ]
+    },
+    {
+      "id": "negative_code_length_review",
+      "category": "negative",
+      "query": "이 dashboard.js 함수 너무 길어. 좀 리팩토링해서 줄여줘.",
+      "should_trigger": false,
+      "assertions": [
+        {
+          "type": "not_contains",
+          "value": "[글자수 체크]",
+          "rationale": "코드 길이 검토는 본 스킬 도메인 아님 — Output Schema 마커 등장 시 False Positive"
+        },
+        {
+          "type": "not_contains",
+          "value": "공백 포함",
+          "rationale": "공백 포함/제외 어휘 자체가 응답에 등장하면 오트리거 신호 — 한컴 양식 표준 어휘"
+        },
+        {
+          "type": "not_contains",
+          "value": "한도 1,000자",
+          "rationale": "양식 글자수 한도 어휘가 코드 검토 응답에 등장하면 도메인 혼동"
+        },
+        {
+          "type": "llm-rubric",
+          "value": "이 응답이 char-count 스킬을 오트리거했는지 1~5점으로 판정한다.\n다음 신호가 1개라도 출력에 있으면 오트리거: '글자수', '자수 카운트', '공백 포함', '한도 N자', '✅ OK / ❌ OVER' 마커.\n다음 응답 패턴이면 5점(완벽 합격):\n(a) 코드 리팩토링·함수 분할·복잡도 평가에 집중하는 응답\n(b) 카운트 도구(PowerShell/Python `.Length`/`len`) 호출 0회\n(c) 양식·신청서·사업계획서 어휘 0회\n(d) 코드 라인 수(line count)나 함수 복잡도(cyclomatic) 분석은 OK — 본 스킬과 무관\n4점 이상에서만 합격. 카운트 도구 호출 발생 시 즉시 1점(critical_violation).",
+          "passing_score": 4,
+          "rationale": "False Positive 방지 — 코드 길이 검토와 양식 글자수 체크의 도메인 분리. 카운트 도구가 코드 검토에 호출되면 컨텍스트 낭비·라우팅 정확도 파괴"
+        }
+      ]
+    },
+    {
+      "id": "edge_form_writing_with_implicit_limit",
+      "category": "edge",
+      "query": "양식에 '글자수 제한: 1,000자'라고 써있는데, 본문 작성해줘. 시장분석 섹션.",
+      "should_trigger": true,
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "1,000자",
+          "rationale": "양식의 글자수 제한을 인식하여 응답에 명시 — 인식 실패 시 자동 발동 게이트 통과 못함"
+        },
+        {
+          "type": "regex",
+          "value": "(현재|작성된|이번 본문|측정 결과)\\s*\\d+\\s*(자|chars)",
+          "rationale": "작성한 본문의 자수를 즉시 카운트하여 보고 — 작성 후 자동 체크 발동 (사용자 명시 요청 없어도)"
+        },
+        {
+          "type": "regex",
+          "value": "(✅|OK|마진|여유|❌|OVER|초과)",
+          "rationale": "OK/OVER 판정 마커 — 양식 제한 인식 후 자동 검증"
+        },
+        {
+          "type": "regex",
+          "value": "(PowerShell|Python|\\.Length|len\\()",
+          "rationale": "카운트 도구 호출 증거 — 작성 직후 시각 추정 없이 도구 측정"
+        },
+        {
+          "type": "llm-rubric",
+          "value": "트랜스크립트와 응답을 1~5점으로 평가한다.\n(a) 양식의 '글자수 제한: 1,000자'를 자동 인식했는가? 인식 실패 시 즉시 감점\n(b) 본문 작성 후 자동으로 카운트 도구 호출 + OK/OVER 보고했는가? 사용자가 '글자수 체크해'라고 명시하지 않아도 자동 발동해야 함 — Constraints §본문 작성 직후 자동 카운트\n(c) OVER 발생 시 자동 압축이 아닌 사용자 안내·옵션 제시로 마무리했는가? 무단 압축 시 1점\n(d) 시각 추정('약 800자 정도일 듯') 사용 시 즉시 1점(critical_violation)\n4점 이상에서만 합격.",
+          "passing_score": 4,
+          "rationale": "엣지 — 양식 제한 명시는 있으나 사용자가 글자수 체크를 명시 요청하지 않은 경우의 자동 발동 검증. 본 스킬의 핵심 가치 = '명시 요청 없어도 자동 발동'"
+        }
+      ]
+    }
+  ],
+  "grading_metadata": {
+    "grader_instruction": "각 assertion에 대해 {text, passed, evidence} JSON 포맷으로 결과 반환. 카운트 도구 호출(PowerShell/Python/wc) 여부는 트랜스크립트의 tool_use 로그에서 evidence로 인용. negative case에서 카운트 도구가 1회라도 호출되면 'critical_violation' 필드에 명시하고 전체 case 불합격 처리. positive/edge case에서 시각 추정 응답('약 N자 정도일 듯')이 발견되면 동일하게 critical_violation 처리.",
+    "comparator_dimensions": [
+      "카운트 도구 호출 정확성",
+      "시각 추정 회피 (Capability Uplift 핵심)",
+      "양식 글자수 제한 자동 인식률",
+      "False Positive 방지율 (코드·SNS·일반 길이 감각 차단)",
+      "Output Schema 무결성 (표 형식·OK/OVER 마커·요약 라인)",
+      "자동 압축 금지 준수 (사용자 안내로 대체)",
+      "본문 작성 직후 자동 카운트 발동 (명시 요청 없어도)"
+    ],
+    "analyzer_focus": [
+      "시각 추정·자릿수 추측이 발생하는 빈도와 트리거 패턴",
+      "양식 PDF·텍스트의 '글자수 제한: N자' 패턴 인식 실패 케이스",
+      "코드 길이·SNS 글자수 등 도메인 외 요청에서의 오트리거 빈도",
+      "OVER 발생 시 자동 압축 vs 사용자 안내 비율",
+      "다중 본문 일괄 처리 시 일부 본문 누락 발생 빈도",
+      "공백 포함 vs 공백 제외 표시 일관성"
+    ]
+  }
+}

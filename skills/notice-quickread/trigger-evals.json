@@ -1,0 +1,13 @@
+[
+  {"query": "이 공고 요약해줘", "should_trigger": true},
+  {"query": "공고 핵심만 뽑아줘", "should_trigger": true},
+  {"query": "공고문 분석해줘", "should_trigger": true},
+  {"query": "자격요건 확인해줘", "should_trigger": true},
+  {"query": "이 공고 배점 알려줘", "should_trigger": true},
+  {"query": "공고 결격사유 알려줘", "should_trigger": true},
+  {"query": "이 공고 어때?", "should_trigger": true},
+  {"query": "이 논문 요약해줘", "should_trigger": false},
+  {"query": "프로젝트 셋업해줘", "should_trigger": false},
+  {"query": "공고 생성해줘", "should_trigger": false},
+  {"query": "진행 중인 사업 계속하자", "should_trigger": false}
+]

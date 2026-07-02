@@ -1,0 +1,51 @@
+{
+  "skill_name": "hwp-reading",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "이 사업계획서 한글파일 읽어줘 (파일.hwp 첨부)",
+      "expected_output": "scripts/hwp_extract.py로 본문·표·이미지를 자동 추출한 뒤 내용을 읽음",
+      "expectations": [
+        "hwp_extract.py(또는 hwp5html/zip 추출)로 자동 추출함",
+        "PDF로 변환해 달라고 사용자에게 요구하지 않음",
+        "표 내용이 보존된 본문을 읽음"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "이 .hwpx 안에 표랑 이미지 다 뽑아줘",
+      "expected_output": "zip 파싱으로 본문·표·메모와 BinData 이미지를 추출함",
+      "expectations": [
+        "hwp_extract.py로 텍스트와 이미지를 함께 추출함",
+        "이미지를 파일로 회수하거나 개별 확인함"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "이 공고문 신청양식(hwp) 체크박스랑 도장 위치까지 정확히 봐줘",
+      "expected_output": "HWP 추출로 진행하되 레이아웃이 어긋날 수 있음을 고지하고, 동일 PDF가 있으면 PDF 이미지 모드를 우선함",
+      "expectations": [
+        "레이아웃(체크박스·도장) 정확도 한계를 한 번 짚음",
+        "PDF가 있으면 pdf-reading(이미지 모드)을 우선하려 함"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "이 README.md 읽어줘",
+      "expected_output": "한글파일 추출 워크플로우를 실행하지 않고 일반 파일 읽기를 수행함",
+      "expectations": [
+        "hwp_extract.py를 실행하지 않음",
+        "일반 Read로 처리함"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "한글파일은 어떻게 PDF로 변환해?",
+      "expected_output": "추출 워크플로우를 실행하지 않고 일반 답변을 제공함",
+      "expectations": [
+        "파일 추출 워크플로우를 실행하지 않음",
+        "변환 방법에 대한 일반 답변을 제공함"
+      ]
+    }
+  ]
+}

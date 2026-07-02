@@ -1,0 +1,34 @@
+{
+  "skill_name": "client-brand",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "이 클라이언트 브랜드 색상 뽑아줘. 주 색상은 #2D6BE4, 보조 색상은 #F5A623이야.",
+      "expected_output": "clients/{클라이언트}/brand.md에 primary: #2D6BE4, secondary: #F5A623이 기록되고 나노바나나 오버라이드 섹션에 강조색·보조색이 명시됨",
+      "expectations": [
+        "primary, secondary HEX 코드를 brand.md에 정확히 기재함",
+        "## 나노바나나 오버라이드 섹션에 강조색·보조색을 명시함",
+        "clients/{클라이언트}/brand.md 경로에 저장함"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "클라이언트가 브랜드 색상 정보를 안 줬어. IT 스타트업이야.",
+      "expected_output": "업종 기본 팔레트(Tech/AI: #7C3AED / #06B6D4)를 적용하고 (추정) 태그를 붙여 brand.md 작성",
+      "expectations": [
+        "업종별 기본 팔레트 표에서 Tech/AI/SaaS 팔레트를 선택함",
+        "HEX 값에 (추정) 태그를 붙임",
+        "brand.md에 source: onboarding-interview 또는 기본값임을 명시함"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "어떤 색이 예뻐 보여?",
+      "expected_output": "client-brand 스킬을 실행하지 않고 일반 조언 제공",
+      "expectations": [
+        "클라이언트 브랜드 추출 절차를 실행하지 않음",
+        "brand.md 파일을 생성하지 않음"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  {"query": "사업계획서 써줘", "should_trigger": true},
+  {"query": "신청서 초안 잡아줘", "should_trigger": true},
+  {"query": "PSST 구조로 작성해줘", "should_trigger": true},
+  {"query": "소셜벤처 패키지 신청서 시작해줘", "should_trigger": true},
+  {"query": "공고 보고 계획서 초안 만들어줘", "should_trigger": true},
+  {"query": "이 공고 분석해줘", "should_trigger": false},
+  {"query": "PSST가 뭐야?", "should_trigger": false},
+  {"query": "이 사업계획서 검토해줘", "should_trigger": false},
+  {"query": "PDF 읽어줘", "should_trigger": false},
+  {"query": "도식화해줘", "should_trigger": false}
+]

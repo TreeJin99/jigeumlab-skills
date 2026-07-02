@@ -1,0 +1,13 @@
+[
+  {"query": "이 PDF 읽어줘", "should_trigger": true},
+  {"query": "공고문 분석해줘", "should_trigger": true},
+  {"query": "신청 양식 확인해줘", "should_trigger": true},
+  {"query": "서식 파일 열어봐", "should_trigger": true},
+  {"query": "이 PDF 내용 알려줘", "should_trigger": true},
+  {"query": "정부지원사업 공고 확인해줘", "should_trigger": true},
+  {"query": "HWP 변환 PDF 분석해줘", "should_trigger": true},
+  {"query": "이 텍스트 파일 읽어줘", "should_trigger": false},
+  {"query": "CSV 데이터 분석해줘", "should_trigger": false},
+  {"query": "코드 짜줘", "should_trigger": false},
+  {"query": "오늘 날씨 어때?", "should_trigger": false}
+]

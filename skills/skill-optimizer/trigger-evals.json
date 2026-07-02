@@ -1,0 +1,13 @@
+[
+  {"query": "이 스킬 리팩토링해줘", "should_trigger": true},
+  {"query": "SKILL.md 최적화해줘", "should_trigger": true},
+  {"query": "이 스킬 진단해줘", "should_trigger": true},
+  {"query": "프롬프트 업그레이드해줘", "should_trigger": true},
+  {"query": "낡은 스킬 표준화해줘", "should_trigger": true},
+  {"query": "200줄 넘는데 분리해줘", "should_trigger": true},
+  {"query": "트리거 안 됨 고쳐줘", "should_trigger": true},
+  {"query": "새 스킬 만들어줘", "should_trigger": false},
+  {"query": "오타 교정해줘", "should_trigger": false},
+  {"query": "코드 리뷰해줘", "should_trigger": false},
+  {"query": "문서 편집해줘", "should_trigger": false}
+]

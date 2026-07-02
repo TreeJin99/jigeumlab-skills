@@ -1,0 +1,33 @@
+{
+  "skill_name": "theme-factory",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "이 발표자료에 테마 적용해줘",
+      "expected_output": "theme-showcase.pdf를 보여주고 테마 선택 후 슬라이드에 색상·폰트 적용",
+      "expectations": [
+        "theme-showcase.pdf를 수정 없이 표시",
+        "사용자 테마 선택을 명시적으로 대기",
+        "선택된 테마의 색상·폰트를 슬라이드에 일관되게 적용"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "테마 중 아무거나 골라서 적용해줘",
+      "expected_output": "theme-showcase.pdf를 먼저 보여주고 사용자의 직접 선택 요청",
+      "expectations": [
+        "임의로 테마를 선택하지 않고 사용자 확인 대기",
+        "10개 테마 목록을 보여주고 선택 유도"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "클라이언트 브랜드 색상 적용해줘",
+      "expected_output": "theme-factory를 실행하지 않고 client-brand 스킬로 안내",
+      "expectations": [
+        "테마 선택 절차를 실행하지 않음",
+        "clients/{클라이언트}/brand.md 기반 브랜드 색상 적용은 client-brand 스킬 영역"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "skill_name": "skill-creator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Slack 메시지 요약 스킬 만들어줘",
+      "expected_output": "인터뷰 후 SKILL.md 초안 작성, 테스트 케이스 제안, evals.json 생성",
+      "expectations": [
+        "스킬 목적·트리거 조건·출력 형식을 인터뷰로 확인",
+        "SKILL.md 초안을 YAML frontmatter 포함해 작성",
+        "evals/evals.json에 3개 이상 테스트 케이스 저장"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "이 스킬 description 최적화해줘",
+      "expected_output": "트리거 eval 쿼리 20개 생성 후 run_loop.py로 최적화",
+      "expectations": [
+        "should-trigger / should-not-trigger 각 8~10개 쿼리 생성",
+        "사용자 검토 후 scripts/run_loop.py 실행",
+        "최적화된 description을 SKILL.md에 적용"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "이 스킬 실행해줘",
+      "expected_output": "skill-creator를 실행하지 않고 해당 스킬을 직접 실행",
+      "expectations": [
+        "스킬 생성/수정 절차를 실행하지 않음",
+        "스킬 실행 요청은 해당 스킬을 직접 사용"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "skill_name": "pptx",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "신제품 소개 발표자료 5슬라이드로 만들어줘",
+      "expected_output": "pptxgenjs를 사용해 5슬라이드 발표자료 생성, 비주얼 QA 포함",
+      "expectations": [
+        "pptxgenjs로 .pptx 파일 생성",
+        "각 슬라이드에 텍스트 외 시각 요소 포함",
+        "markitdown으로 콘텐츠 QA 수행"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "이 발표자료에서 모든 슬라이드의 제목만 추출해줘",
+      "expected_output": "markitdown으로 텍스트 추출 후 제목만 파싱",
+      "expectations": [
+        "python -m markitdown presentation.pptx로 텍스트 추출",
+        "슬라이드 제목 목록만 출력"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "이 Word 문서 편집해줘",
+      "expected_output": "pptx 스킬을 실행하지 않고 docx 스킬로 안내",
+      "expectations": [
+        "pptx 처리 절차를 실행하지 않음",
+        "Word 문서는 docx 스킬 영역임을 안내"
+      ]
+    }
+  ]
+}

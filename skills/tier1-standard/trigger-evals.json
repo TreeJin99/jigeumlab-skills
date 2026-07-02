@@ -1,0 +1,13 @@
+[
+  {"query": "스킬 만들어줘", "should_trigger": true},
+  {"query": "SKILL.md 작성해줘", "should_trigger": true},
+  {"query": "이 스킬 수정해줘", "should_trigger": true},
+  {"query": "evals.json 작성해줘", "should_trigger": true},
+  {"query": "스킬 표준 확인해줘", "should_trigger": true},
+  {"query": "references 분리해줘", "should_trigger": true},
+  {"query": "description 압축해줘", "should_trigger": true},
+  {"query": "사업계획서 써줘", "should_trigger": false},
+  {"query": "코드 짜줘", "should_trigger": false},
+  {"query": "공고문 분석해줘", "should_trigger": false},
+  {"query": "문서 작성해줘", "should_trigger": false}
+]

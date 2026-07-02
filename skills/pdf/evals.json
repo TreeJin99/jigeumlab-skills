@@ -1,0 +1,33 @@
+{
+  "skill_name": "pdf",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "이 PDF에서 표 데이터를 추출해서 CSV로 저장해줘",
+      "expected_output": "pdfplumber로 표를 추출하고 pandas로 CSV 저장",
+      "expectations": [
+        "pdfplumber의 extract_tables()를 사용해 표 추출",
+        "pandas DataFrame으로 변환 후 CSV 저장",
+        "빈 테이블 처리 로직 포함"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "3개 PDF를 하나로 합쳐줘",
+      "expected_output": "pypdf의 PdfWriter를 사용해 PDF 병합",
+      "expectations": [
+        "pypdf 또는 qpdf를 사용해 PDF 병합",
+        "출력 파일 경로를 사용자에게 명시"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "이 엑셀 파일 열어줘",
+      "expected_output": "pdf 스킬을 실행하지 않고 xlsx 스킬로 안내",
+      "expectations": [
+        "PDF 처리 절차를 실행하지 않음",
+        "엑셀 파일은 xlsx 스킬 영역임을 안내"
+      ]
+    }
+  ]
+}
