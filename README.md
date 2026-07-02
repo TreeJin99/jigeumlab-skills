@@ -29,12 +29,25 @@ cp -r jigeumlab-skills/skills/* ~/.claude/skills/
 ```
 
 ### OpenAI Codex CLI
+
+Codex는 스킬을 `~/.agents/skills`(사용자 전역) 또는 작업 폴더의 `.agents/skills`(프로젝트)에서 읽는다.
+
 ```
 git clone https://github.com/TreeJin99/jigeumlab-skills.git
-cp -r jigeumlab-skills/skills/* ~/.codex/skills/
+mkdir -p ~/.agents/skills
+cp -r jigeumlab-skills/skills/* ~/.agents/skills/
 ```
 
-각 스킬은 `SKILL.md`(진입점) + `references/`(상세) + `evals.json`(테스트) 구조다. 스킬은 작업 내용이 `SKILL.md`의 description과 맞을 때 자동으로 선택된다.
+또는 원클릭 설치:
+```
+git clone https://github.com/TreeJin99/jigeumlab-skills.git
+cd jigeumlab-skills && ./install.sh          # 기본: Codex(~/.agents/skills)
+./install.sh claude                          # Claude Code(~/.claude/skills)로 설치
+```
+
+설치 후 Codex에서 `/skills`로 목록 확인, `$skill-name`으로 직접 호출 가능하다.
+
+각 스킬은 `SKILL.md`(진입점) + `references/`(상세) + `evals.json`(테스트) 구조다. 스킬은 작업 내용이 `SKILL.md`의 description과 맞을 때 자동으로 선택된다. Codex가 요구하는 frontmatter는 `name`·`description` 두 필드이며, 전 스킬이 이를 충족한다.
 
 ## 라이선스
 
